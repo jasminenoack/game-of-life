@@ -72,12 +72,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var board_1 = __webpack_require__(1);
 var squareSize = 20;
-var windowWidth = window.innerWidth - 500;
-windowWidth -= windowWidth % squareSize;
-var width = windowWidth / squareSize;
-var windowHeight = window.innerHeight - 200;
-windowHeight -= windowHeight % squareSize;
-var height = windowHeight / squareSize;
+// let windowWidth = window.innerWidth - 500
+// windowWidth -= windowWidth % squareSize
+// const width = windowWidth / squareSize
+// let windowHeight = window.innerHeight - 200
+// windowHeight -= windowHeight % squareSize
+// const height = windowHeight / squareSize
+var height = 30;
+var width = 30;
 var board = new board_1.Board(width, height);
 function drawBoard() {
     var data = board.data();

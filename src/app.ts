@@ -4,13 +4,16 @@ declare const d3: any;
 
 const squareSize = 20;
 
-let windowWidth = window.innerWidth - 500
-windowWidth -= windowWidth % squareSize
-const width = windowWidth / squareSize
+// let windowWidth = window.innerWidth - 500
+// windowWidth -= windowWidth % squareSize
+// const width = windowWidth / squareSize
 
-let windowHeight = window.innerHeight - 200
-windowHeight -= windowHeight % squareSize
-const height = windowHeight / squareSize
+// let windowHeight = window.innerHeight - 200
+// windowHeight -= windowHeight % squareSize
+// const height = windowHeight / squareSize
+
+const height = 30
+const width = 30
 
 const board = new Board(width, height)
 

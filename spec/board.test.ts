@@ -91,7 +91,7 @@ describe('board', () => {
     expect(board.aliveNeighbors(8)).toEqual(2)
   })
 
-  it('gets alive neighbors', () => {
+  it('gets steps', () => {
     let board = new Board(3, 3)
     const spots = board.spots
     spots[0].status = "alive"
@@ -152,9 +152,9 @@ describe('board', () => {
     ])
 
     board.takeStep()
-    // U A E
-    // A A A
-    // A U A
+    // U E E
+    // A A E
+    // E U E
 
     expect(board.data()).toEqual([
       {
@@ -165,7 +165,7 @@ describe('board', () => {
       {
         xIndex: 1,
         yIndex: 0,
-        color: "tomato"
+        color: "aliceblue"
       },
       {
         xIndex: 2,
@@ -186,13 +186,13 @@ describe('board', () => {
       {
         xIndex: 2,
         yIndex: 1,
-        color: "tomato"
+        color: "aliceblue"
       },
 
       {
         xIndex: 0,
         yIndex: 2,
-        color: "tomato"
+        color: "aliceblue"
       },
       {
         xIndex: 1,
@@ -202,52 +202,50 @@ describe('board', () => {
       {
         xIndex: 2,
         yIndex: 2,
-        color: "tomato"
+        color: "aliceblue"
       },
     ])
 
     board.takeStep()
-    // A A A
-    // A O A
-    // A D A
+    // 
 
     expect(board.data()).toEqual([
       {
         xIndex: 0,
         yIndex: 0,
-        color: "tomato"
+        color: "midnightblue"
       },
       {
         xIndex: 1,
         yIndex: 0,
-        color: "tomato"
+        color: "aliceblue"
       },
       {
         xIndex: 2,
         yIndex: 0,
-        color: "tomato"
+        color: "aliceblue"
       },
 
       {
         xIndex: 0,
         yIndex: 1,
-        color: "tomato"
+        color: "hotpink"
       },
       {
         xIndex: 1,
         yIndex: 1,
-        color: "maroon"
+        color: "hotpink"
       },
       {
         xIndex: 2,
         yIndex: 1,
-        color: "tomato"
+        color: "aliceblue"
       },
 
       {
         xIndex: 0,
         yIndex: 2,
-        color: "tomato"
+        color: "aliceblue"
       },
       {
         xIndex: 1,
@@ -257,7 +255,7 @@ describe('board', () => {
       {
         xIndex: 2,
         yIndex: 2,
-        color: "tomato"
+        color: "aliceblue"
       },
     ])
   })

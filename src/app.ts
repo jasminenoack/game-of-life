@@ -63,3 +63,29 @@ autoButton.addEventListener("click", () => {
         }, 500)
     }
 })
+
+const generateButton = document.getElementById("generate")
+generateButton.addEventListener("click", () => {
+    board.generatePattern(patterns.block)
+    drawBoard()
+})
+
+const patterns = {
+    block: [
+        ["alive", "alive"],
+        ["alive", "alive"]
+    ],
+    beehive: [],
+    loaf: [],
+    boat: [],
+    tub: [],
+
+    blinker: [],
+    toad: [],
+    beacon: [],
+    pulsar: [],
+    pentadecathlon: [],
+
+    glider: [],
+    lightweightSpaceship: []
+}

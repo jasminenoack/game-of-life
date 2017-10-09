@@ -123,6 +123,28 @@ autoButton.addEventListener("click", function () {
         }, 500);
     }
 });
+var generateButton = document.getElementById("generate");
+generateButton.addEventListener("click", function () {
+    board.generatePattern(patterns.block);
+    drawBoard();
+});
+var patterns = {
+    block: [
+        ["alive", "alive"],
+        ["alive", "alive"]
+    ],
+    beehive: [],
+    loaf: [],
+    boat: [],
+    tub: [],
+    blinker: [],
+    toad: [],
+    beacon: [],
+    pulsar: [],
+    pentadecathlon: [],
+    glider: [],
+    lightweightSpaceship: []
+};
 
 
 /***/ }),
@@ -229,7 +251,7 @@ var Board = /** @class */ (function () {
             else if (neighborCount > 3 && spot.status === "alive") {
                 results.push("dyingover");
             }
-            else if (neighborCount === 2 || neighborCount === 3) {
+            else if ((spot.status === "alive" && neighborCount === 2) || neighborCount === 3) {
                 results.push("alive");
             }
             else if (spot.status.indexOf("dying") !== -1) {
@@ -242,6 +264,23 @@ var Board = /** @class */ (function () {
         results.forEach(function (result, index) {
             _this.spots[index].status = result;
         });
+    };
+    Board.prototype.generatePattern = function (pattern) {
+        this.spots.forEach(function (spot) {
+            spot.status = "empty";
+        });
+        var height = pattern.length;
+        var width = pattern[0].length;
+        var widthStart = Math.floor((this.width / 2) - (width / 2));
+        var heightStart = Math.floor((this.height / 2) - (height / 2));
+        for (var j = 0; j < height; j++) {
+            var row = heightStart + j;
+            for (var i = 0; i < width; i++) {
+                var column = widthStart + i;
+                var index = row * this.width + column;
+                this.spots[index].status = pattern[j][i];
+            }
+        }
     };
     return Board;
 }());

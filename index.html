@@ -19,9 +19,38 @@
 <body>
     <svg id="board" xmlns="http://www.w3.org/2000/svg"></svg>
 
-    <button id="random">Randomize</button>
-    <button id="step">Step</button>
-    <button id="auto">Auto</button>
+    <div>
+        <button id="random">Randomize</button>
+        <button id="step">Step</button>
+        <button id="auto">Auto</button>
+    </div>
+
+    <div>
+        <select>
+            <optgroup label="Still Lifes">
+                <option value="block">Block</option>
+                <option value="beehive">Beehive</option>
+                <option value="loaf">Loaf</option>
+                <option value="boat">Boat</option>
+                <option value="tub">Tub</option>
+            </optgroup>
+            
+            <optgroup label="Oscillators">
+                <option value="blinker">Blinker</option>
+                <option value="toad">Toad</option>
+                <option value="beacon">Beacon</option>
+                <option value="pulsar">Pulsar</option>
+                <option value="pentadecathlon">Pentadecathlon</option>
+            </optgroup>
+
+            <optgroup label="Spaceships">
+                <option value="glider">Glider</option>
+                <option value="lightweightSpaceship">Lightweight spaceship</option>
+            </optgroup>
+        </select>
+        <button id="generate">Generate Pattern</button>
+    </div>
+
 
     <script src="./lib/d3.js"></script>
     <script type="text/javascript" src="bundle.js">

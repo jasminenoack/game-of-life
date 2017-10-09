@@ -102,7 +102,7 @@ export class Board {
                 results.push("dyingunder")
             } else if (neighborCount > 3 && spot.status === "alive") {
                 results.push("dyingover")
-            } else if (neighborCount === 2 || neighborCount === 3) {
+            } else if ((spot.status === "alive" && neighborCount === 2) || neighborCount === 3) {
                 results.push("alive")
             } else if (spot.status.indexOf("dying") !== -1) {
                 results.push("dead")
@@ -113,5 +113,26 @@ export class Board {
         results.forEach((result, index) => {
             this.spots[index].status = result
         })
+    }
+
+    public generatePattern(pattern) {
+        this.spots.forEach((spot) => {
+            spot.status = "empty"
+        })
+
+        const height = pattern.length
+        const width = pattern[0].length
+
+        const widthStart = Math.floor((this.width / 2) - (width / 2))
+        const heightStart = Math.floor((this.height / 2) - (height / 2))
+
+        for (let j = 0; j < height; j++) {
+            const row = heightStart + j;
+            for (let i = 0; i < width; i++) {
+                const column = widthStart + i
+                const index = row * this.width + column
+                this.spots[index].status = pattern[j][i]
+            }
+        }
     }
 }

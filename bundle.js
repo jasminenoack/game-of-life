@@ -71,15 +71,15 @@
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var board_1 = __webpack_require__(1);
-var squareSize = 30;
+var squareSize = 50;
 var windowWidth = window.innerWidth - 500;
 windowWidth -= windowWidth % squareSize;
 // const width = windowWidth / squareSize
 var windowHeight = window.innerHeight - 200;
 windowHeight -= windowHeight % squareSize;
 // const height = windowHeight / squareSize
-var height = 10;
-var width = 10;
+var height = 3;
+var width = 3;
 var board = new board_1.Board(width, height);
 function drawBoard() {
     var data = board.data();
@@ -106,7 +106,22 @@ randomButton.addEventListener("click", function () {
 });
 var stepButton = document.getElementById("step");
 stepButton.addEventListener("click", function () {
-    console.log("step");
+    board.takeStep();
+    drawBoard();
+});
+var autoButton = document.getElementById("auto");
+var autoInterval;
+autoButton.addEventListener("click", function () {
+    if (autoInterval) {
+        clearInterval(autoInterval);
+        autoInterval = null;
+    }
+    else {
+        autoInterval = setInterval(function () {
+            board.takeStep();
+            drawBoard();
+        }, 250);
+    }
 });
 
 

@@ -2,7 +2,7 @@ import { Board } from './board'
 
 declare const d3: any;
 
-const squareSize = 30;
+const squareSize = 50;
 
 let windowWidth = window.innerWidth - 500
 windowWidth -= windowWidth % squareSize
@@ -12,8 +12,8 @@ let windowHeight = window.innerHeight - 200
 windowHeight -= windowHeight % squareSize
 // const height = windowHeight / squareSize
 
-const height = 10
-const width = 10
+const height = 3
+const width = 3
 
 
 const board = new Board(width, height)
@@ -47,5 +47,20 @@ randomButton.addEventListener("click", () => {
 
 const stepButton = document.getElementById("step")
 stepButton.addEventListener("click", () => {
-    console.log("step")
+    board.takeStep()
+    drawBoard()
+})
+
+const autoButton = document.getElementById("auto")
+let autoInterval
+autoButton.addEventListener("click", () => {
+    if (autoInterval) {
+        clearInterval(autoInterval)
+        autoInterval = null
+    } else {
+        autoInterval = setInterval(() => {
+            board.takeStep()
+            drawBoard()
+        }, 250)
+    }
 })

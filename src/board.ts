@@ -9,4 +9,22 @@ export class Board {
             this.spots.push(new Spot(i))
         }
     }
+
+    public randomize() {
+        this.spots.forEach((spot) => {
+            spot.randomize()
+        })
+    }
+
+    public data() {
+        const result = []
+        this.spots.forEach((spot) => {
+            result.push({
+                xIndex: spot.xIndex(this.width),
+                yIndex: spot.yIndex(this.width),
+                color: spot.spotColor()
+            })
+        })
+        return result
+    }
 }

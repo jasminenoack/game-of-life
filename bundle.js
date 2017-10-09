@@ -71,15 +71,13 @@
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var board_1 = __webpack_require__(1);
-var squareSize = 50;
+var squareSize = 20;
 var windowWidth = window.innerWidth - 500;
 windowWidth -= windowWidth % squareSize;
-// const width = windowWidth / squareSize
+var width = windowWidth / squareSize;
 var windowHeight = window.innerHeight - 200;
 windowHeight -= windowHeight % squareSize;
-// const height = windowHeight / squareSize
-var height = 3;
-var width = 3;
+var height = windowHeight / squareSize;
 var board = new board_1.Board(width, height);
 function drawBoard() {
     var data = board.data();
@@ -120,7 +118,7 @@ autoButton.addEventListener("click", function () {
         autoInterval = setInterval(function () {
             board.takeStep();
             drawBoard();
-        }, 250);
+        }, 500);
     }
 });
 
@@ -260,7 +258,7 @@ var statusMapping = {
     dead: "midnightblue",
     dyingover: "maroon",
     alive: "tomato",
-    dyingunder: "mistyrose"
+    dyingunder: "hotpink"
 };
 var statuses = Object.keys(statusMapping);
 var Spot = /** @class */ (function () {

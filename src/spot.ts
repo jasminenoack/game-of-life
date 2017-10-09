@@ -5,7 +5,7 @@ const statusMapping = {
     dead: "midnightblue",
     dyingover: "maroon",
     alive: "tomato",
-    dyingunder: "mistyrose"
+    dyingunder: "hotpink"
 }
 
 const statuses = Object.keys(statusMapping)

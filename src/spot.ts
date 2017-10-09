@@ -24,7 +24,8 @@ export class Spot {
     }
 
     public randomize() {
-        this.status = statuses[Math.floor(Math.random() * statuses.length)]
+        const newStatus = statuses[Math.floor(Math.random() * statuses.length)] === "alive" ? "alive" : "empty"
+        this.status = newStatus
     }
 
     public spotColor() {

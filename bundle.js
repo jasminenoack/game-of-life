@@ -380,7 +380,8 @@ var Spot = /** @class */ (function () {
         return Math.floor(this.index / width);
     };
     Spot.prototype.randomize = function () {
-        this.status = statuses[Math.floor(Math.random() * statuses.length)];
+        var newStatus = statuses[Math.floor(Math.random() * statuses.length)] === "alive" ? "alive" : "empty";
+        this.status = newStatus;
     };
     Spot.prototype.spotColor = function () {
         return statusMapping[this.status];

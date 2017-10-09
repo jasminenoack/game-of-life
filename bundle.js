@@ -71,15 +71,15 @@
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var board_1 = __webpack_require__(1);
-var squareSize = 20;
+var squareSize = 5;
 // let windowWidth = window.innerWidth - 500
 // windowWidth -= windowWidth % squareSize
 // const width = windowWidth / squareSize
 // let windowHeight = window.innerHeight - 200
 // windowHeight -= windowHeight % squareSize
 // const height = windowHeight / squareSize
-var height = 30;
-var width = 30;
+var height = 120;
+var width = 120;
 var board = new board_1.Board(width, height);
 function drawBoard() {
     var data = board.data();
@@ -207,6 +207,21 @@ var patterns = {
         ["empty", "empty", "empty", "empty", "alive"],
         ["alive", "empty", "empty", "empty", "alive"],
         ["empty", "alive", "alive", "alive", "alive"]
+    ],
+    rPentomino: [
+        ["empty", "alive", "alive"],
+        ["alive", "alive", "empty"],
+        ["empty", "alive", "empty"]
+    ],
+    diehard: [
+        ["empty", "empty", "empty", "empty", "empty", "empty", "alive", "empty"],
+        ["alive", "alive", "empty", "empty", "empty", "empty", "empty", "empty"],
+        ["empty", "alive", "empty", "empty", "empty", "alive", "alive", "alive"]
+    ],
+    acorn: [
+        ["empty", "alive", "empty", "empty", "empty", "empty", "empty"],
+        ["empty", "empty", "empty", "alive", "empty", "empty", "empty"],
+        ["alive", "alive", "empty", "empty", "alive", "alive", "alive"]
     ]
 };
 

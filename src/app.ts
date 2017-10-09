@@ -2,7 +2,7 @@ import { Board } from './board'
 
 declare const d3: any;
 
-const squareSize = 20;
+const squareSize = 5;
 
 // let windowWidth = window.innerWidth - 500
 // windowWidth -= windowWidth % squareSize
@@ -12,8 +12,8 @@ const squareSize = 20;
 // windowHeight -= windowHeight % squareSize
 // const height = windowHeight / squareSize
 
-const height = 30
-const width = 30
+const height = 120
+const width = 120
 
 const board = new Board(width, height)
 
@@ -157,5 +157,20 @@ const patterns = {
         ["empty", "empty", "empty", "empty", "alive"],
         ["alive", "empty", "empty", "empty", "alive"],
         ["empty", "alive", "alive", "alive", "alive"]
+    ],
+    rPentomino: [
+        ["empty", "alive", "alive"],
+        ["alive", "alive", "empty"],
+        ["empty", "alive", "empty"]
+    ],
+    diehard: [
+        ["empty", "empty", "empty", "empty", "empty", "empty", "alive", "empty"],
+        ["alive", "alive", "empty", "empty", "empty", "empty", "empty", "empty"],
+        ["empty", "alive", "empty", "empty", "empty", "alive", "alive", "alive"]
+    ],
+    acorn: [
+        ["empty", "alive", "empty", "empty", "empty", "empty", "empty"],
+        ["empty", "empty", "empty", "alive", "empty", "empty", "empty"],
+        ["alive", "alive", "empty", "empty", "alive", "alive", "alive"]
     ]
 }

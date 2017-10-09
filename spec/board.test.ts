@@ -20,8 +20,6 @@ describe('board', () => {
       counts[spot.status]++
     })
     expect(counts.empty).not.toEqual(16)
-    expect(counts.dead).not.toEqual(0)
-    expect(counts.dying).not.toEqual(0)
     expect(counts.alive).not.toEqual(0)
   })
 
@@ -69,5 +67,198 @@ describe('board', () => {
     // 12 13 14 15
     expect(board.neighbors(8)).toEqual([4, 5, 9, 12, 13])
     expect(board.neighbors(6)).toEqual([1, 2, 3, 5, 7, 9, 10, 11])
+  })
+
+  it('gets alive neighbors', () => {
+    let board = new Board(3, 3)
+    const spots = board.spots
+    spots[0].status = "alive"
+    spots[4].status = "alive"
+    spots[7].status = "alive"
+    // A E E
+    // E A E
+    // E A E
+    expect(board.aliveNeighbors(0)).toEqual(1)
+    expect(board.aliveNeighbors(1)).toEqual(2)
+    expect(board.aliveNeighbors(2)).toEqual(1)
+
+    expect(board.aliveNeighbors(3)).toEqual(3)
+    expect(board.aliveNeighbors(4)).toEqual(2)
+    expect(board.aliveNeighbors(5)).toEqual(2)
+
+    expect(board.aliveNeighbors(6)).toEqual(2)
+    expect(board.aliveNeighbors(7)).toEqual(1)
+    expect(board.aliveNeighbors(8)).toEqual(2)
+  })
+
+  it('gets alive neighbors', () => {
+    let board = new Board(3, 3)
+    const spots = board.spots
+    spots[0].status = "alive"
+    spots[4].status = "alive"
+    spots[7].status = "alive"
+    // A E E
+    // E A E
+    // E A E
+
+    expect(board.data()).toEqual([
+      {
+        xIndex: 0,
+        yIndex: 0,
+        color: "tomato"
+      },
+      {
+        xIndex: 1,
+        yIndex: 0,
+        color: "aliceblue"
+      },
+      {
+        xIndex: 2,
+        yIndex: 0,
+        color: "aliceblue"
+      },
+
+      {
+        xIndex: 0,
+        yIndex: 1,
+        color: "aliceblue"
+      },
+      {
+        xIndex: 1,
+        yIndex: 1,
+        color: "tomato"
+      },
+      {
+        xIndex: 2,
+        yIndex: 1,
+        color: "aliceblue"
+      },
+
+      {
+        xIndex: 0,
+        yIndex: 2,
+        color: "aliceblue"
+      },
+      {
+        xIndex: 1,
+        yIndex: 2,
+        color: "tomato"
+      },
+      {
+        xIndex: 2,
+        yIndex: 2,
+        color: "aliceblue"
+      },
+    ])
+
+    board.takeStep()
+    // U A E
+    // A A A
+    // A U A
+
+    expect(board.data()).toEqual([
+      {
+        xIndex: 0,
+        yIndex: 0,
+        color: "mistyrose"
+      },
+      {
+        xIndex: 1,
+        yIndex: 0,
+        color: "tomato"
+      },
+      {
+        xIndex: 2,
+        yIndex: 0,
+        color: "aliceblue"
+      },
+
+      {
+        xIndex: 0,
+        yIndex: 1,
+        color: "tomato"
+      },
+      {
+        xIndex: 1,
+        yIndex: 1,
+        color: "tomato"
+      },
+      {
+        xIndex: 2,
+        yIndex: 1,
+        color: "tomato"
+      },
+
+      {
+        xIndex: 0,
+        yIndex: 2,
+        color: "tomato"
+      },
+      {
+        xIndex: 1,
+        yIndex: 2,
+        color: "mistyrose"
+      },
+      {
+        xIndex: 2,
+        yIndex: 2,
+        color: "tomato"
+      },
+    ])
+
+    board.takeStep()
+    // A A A
+    // A O A
+    // A D A
+
+    expect(board.data()).toEqual([
+      {
+        xIndex: 0,
+        yIndex: 0,
+        color: "tomato"
+      },
+      {
+        xIndex: 1,
+        yIndex: 0,
+        color: "tomato"
+      },
+      {
+        xIndex: 2,
+        yIndex: 0,
+        color: "tomato"
+      },
+
+      {
+        xIndex: 0,
+        yIndex: 1,
+        color: "tomato"
+      },
+      {
+        xIndex: 1,
+        yIndex: 1,
+        color: "maroon"
+      },
+      {
+        xIndex: 2,
+        yIndex: 1,
+        color: "tomato"
+      },
+
+      {
+        xIndex: 0,
+        yIndex: 2,
+        color: "tomato"
+      },
+      {
+        xIndex: 1,
+        yIndex: 2,
+        color: "midnightblue"
+      },
+      {
+        xIndex: 2,
+        yIndex: 2,
+        color: "tomato"
+      },
+    ])
   })
 })

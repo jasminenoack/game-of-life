@@ -1,10 +1,11 @@
-type status = "empty" | "dead" | "dying" | "alive"
+type status = "empty" | "dead" | "dyingover" | "dyingunder" | "alive"
 
 const statusMapping = {
     empty: "aliceblue",
     dead: "midnightblue",
-    dying: "maroon",
-    alive: "tomato"
+    dyingover: "maroon",
+    alive: "tomato",
+    dyingunder: "mistyrose"
 }
 
 const statuses = Object.keys(statusMapping)

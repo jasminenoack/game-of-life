@@ -192,6 +192,42 @@ var Board = /** @class */ (function () {
         this.spots[i].neighborBlocks = neighborBlocks;
         return this.spots[i].neighborBlocks;
     };
+    Board.prototype.aliveNeighbors = function (i) {
+        var _this = this;
+        var neighbors = this.neighbors(i);
+        var result = 0;
+        neighbors.forEach(function (neighbor) {
+            if (_this.spots[neighbor].status === "alive") {
+                result++;
+            }
+        });
+        return result;
+    };
+    Board.prototype.takeStep = function () {
+        var _this = this;
+        var results = [];
+        this.spots.forEach(function (spot, index) {
+            var neighborCount = _this.aliveNeighbors(index);
+            if (neighborCount < 2 && spot.status === "alive") {
+                results.push("dyingunder");
+            }
+            else if (neighborCount > 3 && spot.status === "alive") {
+                results.push("dyingover");
+            }
+            else if (neighborCount === 2 || neighborCount === 3) {
+                results.push("alive");
+            }
+            else if (spot.status.indexOf("dying") !== -1) {
+                results.push("dead");
+            }
+            else {
+                results.push(spot.status);
+            }
+        });
+        results.forEach(function (result, index) {
+            _this.spots[index].status = result;
+        });
+    };
     return Board;
 }());
 exports.Board = Board;
@@ -207,8 +243,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var statusMapping = {
     empty: "aliceblue",
     dead: "midnightblue",
-    dying: "maroon",
-    alive: "tomato"
+    dyingover: "maroon",
+    alive: "tomato",
+    dyingunder: "mistyrose"
 };
 var statuses = Object.keys(statusMapping);
 var Spot = /** @class */ (function () {

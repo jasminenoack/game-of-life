@@ -30,7 +30,7 @@ describe('spot', () => {
     it('has a status', () => {
         expect((new Spot()).status).toBeTruthy();
         expect((new Spot(6, "alive")).status).toEqual("alive");
-        expect((new Spot(6, "dying")).status).toEqual("dying");
+        expect((new Spot(6, "dyingunder")).status).toEqual("dyingunder");
         expect((new Spot(6, "dead")).status).toEqual("dead");
         expect((new Spot(6, "empty")).status).toEqual("empty");
     })
@@ -49,7 +49,7 @@ describe('spot', () => {
 
     it('can get the color of a spot', () => {
         expect((new Spot(6, "alive")).spotColor()).toEqual("tomato");
-        expect((new Spot(6, "dying")).spotColor()).toEqual("maroon");
+        expect((new Spot(6, "dyingover")).spotColor()).toEqual("maroon");
         expect((new Spot(6, "dead")).spotColor()).toEqual("midnightblue");
         expect((new Spot(6, "empty")).spotColor()).toEqual("aliceblue");
     })

@@ -82,4 +82,36 @@ export class Board {
         this.spots[i].neighborBlocks = neighborBlocks
         return this.spots[i].neighborBlocks
     }
+
+    public aliveNeighbors(i) {
+        const neighbors = this.neighbors(i)
+        let result = 0
+        neighbors.forEach((neighbor) => {
+            if (this.spots[neighbor].status === "alive") {
+                result++
+            }
+        })
+        return result
+    }
+
+    public takeStep() {
+        const results = []
+        this.spots.forEach((spot, index) => {
+            const neighborCount = this.aliveNeighbors(index)
+            if (neighborCount < 2 && spot.status === "alive") {
+                results.push("dyingunder")
+            } else if (neighborCount > 3 && spot.status === "alive") {
+                results.push("dyingover")
+            } else if (neighborCount === 2 || neighborCount === 3) {
+                results.push("alive")
+            } else if (spot.status.indexOf("dying") !== -1) {
+                results.push("dead")
+            } else {
+                results.push(spot.status)
+            }
+        })
+        results.forEach((result, index) => {
+            this.spots[index].status = result
+        })
+    }
 }

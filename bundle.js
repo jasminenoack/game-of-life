@@ -104,6 +104,10 @@ randomButton.addEventListener("click", function () {
     board.randomize();
     drawBoard();
 });
+var stepButton = document.getElementById("step");
+stepButton.addEventListener("click", function () {
+    console.log("step");
+});
 
 
 /***/ }),
@@ -139,6 +143,54 @@ var Board = /** @class */ (function () {
             });
         });
         return result;
+    };
+    Board.prototype.firstColumn = function (i) {
+        return i % this.width == 0;
+    };
+    Board.prototype.firstRow = function (i) {
+        return i < this.width;
+    };
+    Board.prototype.lastRow = function (i) {
+        return i > this.width * this.height - (this.width + 1);
+    };
+    Board.prototype.lastColumn = function (i) {
+        return (i + 1) % this.width == 0;
+    };
+    Board.prototype.neighbors = function (i) {
+        var firstRow = this.firstRow(i);
+        var lastRow = this.lastRow(i);
+        var firstColumn = this.firstColumn(i);
+        var lastColumn = this.lastColumn(i);
+        if (this.spots[i].neighborBlocks) {
+            return this.spots[i].neighborBlocks;
+        }
+        var neighborBlocks = [];
+        if (!firstRow && !firstColumn) {
+            neighborBlocks.push(i - this.width - 1);
+        }
+        if (!firstRow) {
+            neighborBlocks.push(i - this.width);
+        }
+        if (!firstRow && !lastColumn) {
+            neighborBlocks.push(i - this.width + 1);
+        }
+        if (!firstColumn) {
+            neighborBlocks.push(i - 1);
+        }
+        if (!lastColumn) {
+            neighborBlocks.push(i + 1);
+        }
+        if (!lastRow && !firstColumn) {
+            neighborBlocks.push(i + this.width - 1);
+        }
+        if (!lastRow) {
+            neighborBlocks.push(i + this.width);
+        }
+        if (!lastRow && !lastColumn) {
+            neighborBlocks.push(i + this.width + 1);
+        }
+        this.spots[i].neighborBlocks = neighborBlocks;
+        return this.spots[i].neighborBlocks;
     };
     return Board;
 }());

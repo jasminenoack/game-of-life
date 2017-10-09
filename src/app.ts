@@ -40,8 +40,12 @@ function drawBoard() {
 drawBoard()
 
 const randomButton = document.getElementById("random")
-
 randomButton.addEventListener("click", () => {
     board.randomize()
     drawBoard()
+})
+
+const stepButton = document.getElementById("step")
+stepButton.addEventListener("click", () => {
+    console.log("step")
 })

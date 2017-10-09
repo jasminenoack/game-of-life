@@ -64,9 +64,10 @@ autoButton.addEventListener("click", () => {
     }
 })
 
+const selectPattern = document.getElementById("pattern")
 const generateButton = document.getElementById("generate")
 generateButton.addEventListener("click", () => {
-    board.generatePattern(patterns.block)
+    board.generatePattern(patterns[(selectPattern as any).value])
     drawBoard()
 })
 
@@ -75,17 +76,86 @@ const patterns = {
         ["alive", "alive"],
         ["alive", "alive"]
     ],
-    beehive: [],
-    loaf: [],
-    boat: [],
-    tub: [],
+    beehive: [
+        ["empty", "alive", "alive", "empty"],
+        ["alive", "empty", "empty", "alive"],
+        ["empty", "alive", "alive", "empty"]
+    ],
+    loaf: [
+        ["empty", "alive", "alive", "empty"],
+        ["alive", "empty", "empty", "alive"],
+        ["empty", "alive", "empty", "alive"],
+        ["empty", "empty", "alive", "empty"]
+    ],
+    boat: [
+        ["alive", "alive", "empty"],
+        ["alive", "empty", "alive"],
+        ["empty", "alive", "empty"]
+    ],
+    tub: [
+        ["empty", "alive", "empty"],
+        ["alive", "empty", "alive"],
+        ["empty", "alive", "empty"]
+    ],
 
-    blinker: [],
-    toad: [],
-    beacon: [],
-    pulsar: [],
-    pentadecathlon: [],
+    blinker: [
+        ["alive", "alive", "alive"]
+    ],
+    toad: [
+        ["empty", "alive", "alive", "alive"],
+        ["alive", "alive", "alive", "empty"]
+    ],
+    beacon: [
+        ["alive", "alive", "empty", "empty"],
+        ["alive", "empty", "empty", "empty"],
+        ["empty", "empty", "empty", "alive"],
+        ["empty", "empty", "alive", "alive"]
+    ],
+    pulsar: [
+        ["empty", "empty", "alive", "alive", "empty", "empty", "empty", "empty", "empty", "alive", "alive", "empty", "empty"],
+        ["empty", "empty", "empty", "alive", "alive", "empty", "empty", "empty", "alive", "alive", "empty", "empty", "empty"],
+        ["alive", "empty", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "empty", "alive"],
+        ["alive", "alive", "alive", "empty", "alive", "alive", "empty", "alive", "alive", "empty", "alive", "alive", "alive"],
+        ["empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty"],
+        ["empty", "empty", "alive", "alive", "alive", "empty", "empty", "empty", "alive", "alive", "alive", "empty", "empty"],
 
-    glider: [],
-    lightweightSpaceship: []
+        ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty"],
+
+        ["empty", "empty", "alive", "alive", "alive", "empty", "empty", "empty", "alive", "alive", "alive", "empty", "empty"],
+        ["empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty"],
+        ["alive", "alive", "alive", "empty", "alive", "alive", "empty", "alive", "alive", "empty", "alive", "alive", "alive"],
+        ["alive", "empty", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "empty", "alive"],
+        ["empty", "empty", "empty", "alive", "alive", "empty", "empty", "empty", "alive", "alive", "empty", "empty", "empty"],
+        ["empty", "empty", "alive", "alive", "empty", "empty", "empty", "empty", "empty", "alive", "alive", "empty", "empty"],
+    ],
+    pentadecathlon: [
+        ["alive", "alive", "alive"],
+        ["empty", "alive", "empty"],
+        ["empty", "alive", "empty"],
+        ["alive", "alive", "alive"],
+
+        ["empty", "empty", "empty"],
+
+        ["alive", "alive", "alive"],
+        ["alive", "alive", "alive"],
+
+        ["empty", "empty", "empty"],
+
+        ["alive", "alive", "alive"],
+        ["empty", "alive", "empty"],
+        ["empty", "alive", "empty"],
+        ["alive", "alive", "alive"],
+    ],
+
+    glider: [
+        ["empty", "alive", "empty"],
+        ["empty", "empty", "alive"],
+        ["alive", "alive", "alive"],
+    ],
+    lightweightSpaceship: [
+        ["alive", "empty", "empty", "alive", "empty"],
+        ["empty", "empty", "empty", "empty", "alive"],
+        ["alive", "empty", "empty", "empty", "alive"],
+        ["empty", "alive", "alive", "alive", "alive"]
+    ]
 }

@@ -65,40 +65,79 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-var testData = [
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-];
-var board = d3.select("#board");
-board.attr("height", 10 * 4);
-board.attr("width", 10 * 4);
-var rects = board.selectAll('rect')
-    .data(testData)
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var board_1 = __webpack_require__(1);
+var squareSize = 15;
+var windowWidth = window.innerWidth - 500;
+windowWidth -= windowWidth % squareSize;
+var width = windowWidth / squareSize;
+var windowHeight = window.innerHeight - 100;
+windowHeight -= windowHeight % squareSize;
+var height = windowHeight / squareSize;
+console.log(width, height);
+var board = new board_1.Board(width, height);
+var spots = board.spots;
+var boardEl = d3.select("#board");
+boardEl.attr("height", height * squareSize);
+boardEl.attr("width", width * squareSize);
+var rects = boardEl.selectAll('rect')
+    .data(spots)
     .enter().append("rect")
-    .attr("x", function (d, i) { return i % 4 * 10; })
-    .attr("y", function (d, i) { return Math.floor(i / 4) * 10; })
-    .attr("width", 10)
-    .attr("height", 10)
-    .attr("rx", 5)
-    .attr("ry", 5);
-console.log(board);
-// < rect x= "10" y= "10" width= "100" height= "100" /> 
+    .attr("x", function (d) { return d.xIndex(width) * squareSize; })
+    .attr("y", function (d) { return d.yIndex(width) * squareSize; })
+    .attr("width", squareSize)
+    .attr("height", squareSize)
+    .attr("rx", squareSize / 2)
+    .attr("ry", squareSize / 2);
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var spot_1 = __webpack_require__(2);
+var Board = /** @class */ (function () {
+    function Board(width, height) {
+        this.width = width;
+        this.height = height;
+        this.spots = [];
+        for (var i = 0; i < width * height; i++) {
+            this.spots.push(new spot_1.Spot(i));
+        }
+    }
+    return Board;
+}());
+exports.Board = Board;
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Spot = /** @class */ (function () {
+    function Spot(index) {
+        if (index === void 0) { index = 0; }
+        this.index = index;
+    }
+    Spot.prototype.xIndex = function (width) {
+        return this.index % width;
+    };
+    Spot.prototype.yIndex = function (width) {
+        return Math.floor(this.index / width);
+    };
+    return Spot;
+}());
+exports.Spot = Spot;
 
 
 /***/ })

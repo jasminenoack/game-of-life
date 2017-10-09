@@ -1,41 +1,32 @@
+import { Board } from './board'
+
 declare const d3: any;
 
-const testData = [
-    {},
-    {},
-    {},
-    {},
+const squareSize = 15;
 
-    {},
-    {},
-    {},
-    {},
+let windowWidth = window.innerWidth - 500
+windowWidth -= windowWidth % squareSize
+const width = windowWidth / squareSize
 
-    {},
-    {},
-    {},
-    {},
+let windowHeight = window.innerHeight - 100
+windowHeight -= windowHeight % squareSize
+const height = windowHeight / squareSize
 
-    {},
-    {},
-    {},
-    {},
-]
+console.log(width, height)
 
-const board = d3.select("#board")
-board.attr("height", 10 * 4)
-board.attr("width", 10 * 4)
-const rects = board.selectAll('rect')
-    .data(testData)
+const board = new Board(width, height)
+const spots = board.spots
+
+
+const boardEl = d3.select("#board")
+boardEl.attr("height", height * squareSize)
+boardEl.attr("width", width * squareSize)
+const rects = boardEl.selectAll('rect')
+    .data(spots)
     .enter().append("rect")
-    .attr("x", (d, i) => i % 4 * 10)
-    .attr("y", (d, i) => Math.floor(i / 4) * 10)
-    .attr("width", 10)
-    .attr("height", 10)
-    .attr("rx", 5)
-    .attr("ry", 5)
-
-console.log(board)
-
-
-    // < rect x= "10" y= "10" width= "100" height= "100" />
+    .attr("x", (d) => d.xIndex(width) * squareSize)
+    .attr("y", (d) => d.yIndex(width) * squareSize)
+    .attr("width", squareSize)
+    .attr("height", squareSize)
+    .attr("rx", squareSize / 2)
+    .attr("ry", squareSize / 2)

@@ -23,17 +23,19 @@ function drawBoard() {
     const boardEl = d3.select("#board")
     boardEl.attr("height", height * squareSize)
     boardEl.attr("width", width * squareSize)
-    const rects = boardEl.selectAll('rect')
-    rects.data(data)
-        .enter().append("rect")
-        .attr("x", (d) => d.xIndex * squareSize)
+
+    let rects = boardEl.selectAll('rect').data(data)
+
+    if (!rects.size()) {
+        rects = rects.enter().append("rect")
+    }
+    rects.attr("x", (d) => d.xIndex * squareSize)
         .attr("y", (d) => d.yIndex * squareSize)
         .attr("width", squareSize)
         .attr("height", squareSize)
         .attr("rx", squareSize / 2)
         .attr("ry", squareSize / 2)
         .attr("fill", (d) => d.color)
-    rects.exit().remove()
 }
 drawBoard()
 
@@ -41,6 +43,5 @@ const randomButton = document.getElementById("random")
 
 randomButton.addEventListener("click", () => {
     board.randomize()
-    console.log(board)
     drawBoard()
 })

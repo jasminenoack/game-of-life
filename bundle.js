@@ -86,23 +86,22 @@ function drawBoard() {
     var boardEl = d3.select("#board");
     boardEl.attr("height", height * squareSize);
     boardEl.attr("width", width * squareSize);
-    var rects = boardEl.selectAll('rect');
-    rects.data(data)
-        .enter().append("rect")
-        .attr("x", function (d) { return d.xIndex * squareSize; })
+    var rects = boardEl.selectAll('rect').data(data);
+    if (!rects.size()) {
+        rects = rects.enter().append("rect");
+    }
+    rects.attr("x", function (d) { return d.xIndex * squareSize; })
         .attr("y", function (d) { return d.yIndex * squareSize; })
         .attr("width", squareSize)
         .attr("height", squareSize)
         .attr("rx", squareSize / 2)
         .attr("ry", squareSize / 2)
         .attr("fill", function (d) { return d.color; });
-    rects.exit().remove();
 }
 drawBoard();
 var randomButton = document.getElementById("random");
 randomButton.addEventListener("click", function () {
     board.randomize();
-    console.log(board);
     drawBoard();
 });
 

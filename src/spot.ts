@@ -3,7 +3,7 @@ type status = "empty" | "dead" | "dyingover" | "dyingunder" | "alive"
 const statusMapping = {
     empty: "rgba(240,248,255, 1)",
     dead: "rgba(25,25,112, 0.2)",
-    dyingover: " rgba(128,0,0,0.2)",
+    dyingover: "rgba(128,0,0,0.2)",
     alive: "rgba(255,99,71, 1)",
     dyingunder: "rgba(255,105,180, 0.2)"
 }

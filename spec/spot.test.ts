@@ -48,9 +48,9 @@ describe('spot', () => {
     })
 
     it('can get the color of a spot', () => {
-        expect((new Spot(6, "alive")).spotColor()).toEqual("tomato");
-        expect((new Spot(6, "dyingover")).spotColor()).toEqual("maroon");
-        expect((new Spot(6, "dead")).spotColor()).toEqual("midnightblue");
-        expect((new Spot(6, "empty")).spotColor()).toEqual("aliceblue");
+        expect((new Spot(6, "alive")).spotColor()).toEqual("rgba(255,99,71, 1)");
+        expect((new Spot(6, "dyingover")).spotColor()).toEqual("rgba(128,0,0,0.2)");
+        expect((new Spot(6, "dead")).spotColor()).toEqual("rgba(25,25,112, 0.2)");
+        expect((new Spot(6, "empty")).spotColor()).toEqual("rgba(240,248,255, 1)");
     })
 })

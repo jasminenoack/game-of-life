@@ -29,19 +29,19 @@ describe('board', () => {
       {
         xIndex: 0,
         yIndex: 0,
-        color: "aliceblue"
+        color: "rgba(240,248,255, 1)"
       }, {
         xIndex: 1,
         yIndex: 0,
-        color: "aliceblue"
+        color: "rgba(240,248,255, 1)"
       }, {
         xIndex: 0,
         yIndex: 1,
-        color: "aliceblue"
+        color: "rgba(240,248,255, 1)"
       }, {
         xIndex: 1,
         yIndex: 1,
-        color: "aliceblue"
+        color: "rgba(240,248,255, 1)"
       }
     ])
   })
@@ -105,49 +105,49 @@ describe('board', () => {
       {
         xIndex: 0,
         yIndex: 0,
-        color: "tomato"
+        color: "rgba(255,99,71, 1)"
       },
       {
         xIndex: 1,
         yIndex: 0,
-        color: "aliceblue"
+        color: "rgba(240,248,255, 1)"
       },
       {
         xIndex: 2,
         yIndex: 0,
-        color: "aliceblue"
+        color: "rgba(240,248,255, 1)"
       },
 
       {
         xIndex: 0,
         yIndex: 1,
-        color: "aliceblue"
+        color: "rgba(240,248,255, 1)"
       },
       {
         xIndex: 1,
         yIndex: 1,
-        color: "tomato"
+        color: "rgba(255,99,71, 1)"
       },
       {
         xIndex: 2,
         yIndex: 1,
-        color: "aliceblue"
+        color: "rgba(240,248,255, 1)"
       },
 
       {
         xIndex: 0,
         yIndex: 2,
-        color: "aliceblue"
+        color: "rgba(240,248,255, 1)"
       },
       {
         xIndex: 1,
         yIndex: 2,
-        color: "tomato"
+        color: "rgba(255,99,71, 1)"
       },
       {
         xIndex: 2,
         yIndex: 2,
-        color: "aliceblue"
+        color: "rgba(240,248,255, 1)"
       },
     ])
 
@@ -160,49 +160,49 @@ describe('board', () => {
       {
         xIndex: 0,
         yIndex: 0,
-        color: "hotpink"
+        color: "rgba(255,105,180, 0.2)"
       },
       {
         xIndex: 1,
         yIndex: 0,
-        color: "aliceblue"
+        color: "rgba(240,248,255, 1)"
       },
       {
         xIndex: 2,
         yIndex: 0,
-        color: "aliceblue"
+        color: "rgba(240,248,255, 1)"
       },
 
       {
         xIndex: 0,
         yIndex: 1,
-        color: "tomato"
+        color: "rgba(255,99,71, 1)"
       },
       {
         xIndex: 1,
         yIndex: 1,
-        color: "tomato"
+        color: "rgba(255,99,71, 1)"
       },
       {
         xIndex: 2,
         yIndex: 1,
-        color: "aliceblue"
+        color: "rgba(240,248,255, 1)"
       },
 
       {
         xIndex: 0,
         yIndex: 2,
-        color: "aliceblue"
+        color: "rgba(240,248,255, 1)"
       },
       {
         xIndex: 1,
         yIndex: 2,
-        color: "hotpink"
+        color: "rgba(255,105,180, 0.2)"
       },
       {
         xIndex: 2,
         yIndex: 2,
-        color: "aliceblue"
+        color: "rgba(240,248,255, 1)"
       },
     ])
 
@@ -213,49 +213,49 @@ describe('board', () => {
       {
         xIndex: 0,
         yIndex: 0,
-        color: "midnightblue"
+        color: "rgba(25,25,112, 0.2)"
       },
       {
         xIndex: 1,
         yIndex: 0,
-        color: "aliceblue"
+        color: "rgba(240,248,255, 1)"
       },
       {
         xIndex: 2,
         yIndex: 0,
-        color: "aliceblue"
+        color: "rgba(240,248,255, 1)"
       },
 
       {
         xIndex: 0,
         yIndex: 1,
-        color: "hotpink"
+        color: "rgba(255,105,180, 0.2)"
       },
       {
         xIndex: 1,
         yIndex: 1,
-        color: "hotpink"
+        color: "rgba(255,105,180, 0.2)"
       },
       {
         xIndex: 2,
         yIndex: 1,
-        color: "aliceblue"
+        color: "rgba(240,248,255, 1)"
       },
 
       {
         xIndex: 0,
         yIndex: 2,
-        color: "aliceblue"
+        color: "rgba(240,248,255, 1)"
       },
       {
         xIndex: 1,
         yIndex: 2,
-        color: "midnightblue"
+        color: "rgba(25,25,112, 0.2)"
       },
       {
         xIndex: 2,
         yIndex: 2,
-        color: "aliceblue"
+        color: "rgba(240,248,255, 1)"
       },
     ])
   })

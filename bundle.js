@@ -417,99 +417,130 @@ exports.Spot = Spot;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var a = "alive";
+var e = "empty";
 exports.patterns = {
     block: [
-        ["alive", "alive"],
-        ["alive", "alive"]
+        [a, a],
+        [a, a]
     ],
     beehive: [
-        ["empty", "alive", "alive", "empty"],
-        ["alive", "empty", "empty", "alive"],
-        ["empty", "alive", "alive", "empty"]
+        [e, a, a, e],
+        [a, e, e, a],
+        [e, a, a, e]
     ],
     loaf: [
-        ["empty", "alive", "alive", "empty"],
-        ["alive", "empty", "empty", "alive"],
-        ["empty", "alive", "empty", "alive"],
-        ["empty", "empty", "alive", "empty"]
+        [e, a, a, e],
+        [a, e, e, a],
+        [e, a, e, a],
+        [e, e, a, e]
     ],
     boat: [
-        ["alive", "alive", "empty"],
-        ["alive", "empty", "alive"],
-        ["empty", "alive", "empty"]
+        [a, a, e],
+        [a, e, a],
+        [e, a, e]
     ],
     tub: [
-        ["empty", "alive", "empty"],
-        ["alive", "empty", "alive"],
-        ["empty", "alive", "empty"]
+        [e, a, e],
+        [a, e, a],
+        [e, a, e]
     ],
     blinker: [
-        ["alive", "alive", "alive"]
+        [a, a, a]
     ],
     toad: [
-        ["empty", "alive", "alive", "alive"],
-        ["alive", "alive", "alive", "empty"]
+        [e, a, a, a],
+        [a, a, a, e]
     ],
     beacon: [
-        ["alive", "alive", "empty", "empty"],
-        ["alive", "empty", "empty", "empty"],
-        ["empty", "empty", "empty", "alive"],
-        ["empty", "empty", "alive", "alive"]
+        [a, a, e, e],
+        [a, e, e, e],
+        [e, e, e, a],
+        [e, e, a, a]
     ],
     pulsar: [
-        ["empty", "empty", "alive", "alive", "empty", "empty", "empty", "empty", "empty", "alive", "alive", "empty", "empty"],
-        ["empty", "empty", "empty", "alive", "alive", "empty", "empty", "empty", "alive", "alive", "empty", "empty", "empty"],
-        ["alive", "empty", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "empty", "alive"],
-        ["alive", "alive", "alive", "empty", "alive", "alive", "empty", "alive", "alive", "empty", "alive", "alive", "alive"],
-        ["empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty"],
-        ["empty", "empty", "alive", "alive", "alive", "empty", "empty", "empty", "alive", "alive", "alive", "empty", "empty"],
-        ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty"],
-        ["empty", "empty", "alive", "alive", "alive", "empty", "empty", "empty", "alive", "alive", "alive", "empty", "empty"],
-        ["empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty"],
-        ["alive", "alive", "alive", "empty", "alive", "alive", "empty", "alive", "alive", "empty", "alive", "alive", "alive"],
-        ["alive", "empty", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "empty", "alive"],
-        ["empty", "empty", "empty", "alive", "alive", "empty", "empty", "empty", "alive", "alive", "empty", "empty", "empty"],
-        ["empty", "empty", "alive", "alive", "empty", "empty", "empty", "empty", "empty", "alive", "alive", "empty", "empty"],
+        [e, e, a, a, e, e, e, e, e, a, a, e, e],
+        [e, e, e, a, a, e, e, e, a, a, e, e, e],
+        [a, e, e, a, e, a, e, a, e, a, e, e, a],
+        [a, a, a, e, a, a, e, a, a, e, a, a, a],
+        [e, a, e, a, e, a, e, a, e, a, e, a, e],
+        [e, e, a, a, a, e, e, e, a, a, a, e, e],
+        [e, e, e, e, e, e, e, e, e, e, e, e, e],
+        [e, e, a, a, a, e, e, e, a, a, a, e, e],
+        [e, a, e, a, e, a, e, a, e, a, e, a, e],
+        [a, a, a, e, a, a, e, a, a, e, a, a, a],
+        [a, e, e, a, e, a, e, a, e, a, e, e, a],
+        [e, e, e, a, a, e, e, e, a, a, e, e, e],
+        [e, e, a, a, e, e, e, e, e, a, a, e, e],
     ],
     pentadecathlon: [
-        ["alive", "alive", "alive"],
-        ["empty", "alive", "empty"],
-        ["empty", "alive", "empty"],
-        ["alive", "alive", "alive"],
-        ["empty", "empty", "empty"],
-        ["alive", "alive", "alive"],
-        ["alive", "alive", "alive"],
-        ["empty", "empty", "empty"],
-        ["alive", "alive", "alive"],
-        ["empty", "alive", "empty"],
-        ["empty", "alive", "empty"],
-        ["alive", "alive", "alive"],
+        [a, a, a],
+        [e, a, e],
+        [e, a, e],
+        [a, a, a],
+        [e, e, e],
+        [a, a, a],
+        [a, a, a],
+        [e, e, e],
+        [a, a, a],
+        [e, a, e],
+        [e, a, e],
+        [a, a, a],
     ],
     glider: [
-        ["empty", "alive", "empty"],
-        ["empty", "empty", "alive"],
-        ["alive", "alive", "alive"],
+        [e, a, e],
+        [e, e, a],
+        [a, a, a],
     ],
     lightweightSpaceship: [
-        ["alive", "empty", "empty", "alive", "empty"],
-        ["empty", "empty", "empty", "empty", "alive"],
-        ["alive", "empty", "empty", "empty", "alive"],
-        ["empty", "alive", "alive", "alive", "alive"]
+        [a, e, e, a, e],
+        [e, e, e, e, a],
+        [a, e, e, e, a],
+        [e, a, a, a, a]
     ],
     rPentomino: [
-        ["empty", "alive", "alive"],
-        ["alive", "alive", "empty"],
-        ["empty", "alive", "empty"]
+        [e, a, a],
+        [a, a, e],
+        [e, a, e]
     ],
     diehard: [
-        ["empty", "empty", "empty", "empty", "empty", "empty", "alive", "empty"],
-        ["alive", "alive", "empty", "empty", "empty", "empty", "empty", "empty"],
-        ["empty", "alive", "empty", "empty", "empty", "alive", "alive", "alive"]
+        [e, e, e, e, e, e, a, e],
+        [a, a, e, e, e, e, e, e],
+        [e, a, e, e, e, a, a, a]
     ],
     acorn: [
-        ["empty", "alive", "empty", "empty", "empty", "empty", "empty"],
-        ["empty", "empty", "empty", "alive", "empty", "empty", "empty"],
-        ["alive", "alive", "empty", "empty", "alive", "alive", "alive"]
+        [e, a, e, e, e, e, e],
+        [e, e, e, a, e, e, e],
+        [a, a, e, e, a, a, a]
+    ],
+    gosperGliderGun: [
+        [e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, a, e, e, e, e, e, e, e, e, e, e, e],
+        [e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, a, e, a, e, e, e, e, e, e, e, e, e, e, e],
+        [e, e, e, e, e, e, e, e, e, e, e, e, a, a, e, e, e, e, e, e, a, a, e, e, e, e, e, e, e, e, e, e, e, e, a, a],
+        [e, e, e, e, e, e, e, e, e, e, e, a, e, e, e, a, e, e, e, e, a, a, e, e, e, e, e, e, e, e, e, e, e, e, a, a],
+        [a, a, e, e, e, e, e, e, e, e, a, e, e, e, e, e, a, e, e, e, a, a, e, e, e, e, e, e, e, e, e, e, e, e, e, e],
+        [a, a, e, e, e, e, e, e, e, e, a, e, e, e, a, e, a, a, e, e, e, e, a, e, a, e, e, e, e, e, e, e, e, e, e, e],
+        [e, e, e, e, e, e, e, e, e, e, a, e, e, e, e, e, a, e, e, e, e, e, e, e, a, e, e, e, e, e, e, e, e, e, e, e],
+        [e, e, e, e, e, e, e, e, e, e, e, a, e, e, e, a, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e],
+        [e, e, e, e, e, e, e, e, e, e, e, e, a, a, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e],
+    ],
+    engine1: [
+        [e, e, e, e, e, e, a, e],
+        [e, e, e, e, a, e, a, a],
+        [e, e, e, e, a, e, a, e],
+        [e, e, e, e, a, e, e, e],
+        [e, e, a, e, e, e, e, e],
+        [a, e, a, e, e, e, e, e]
+    ],
+    engine2: [
+        [a, a, a, e, a],
+        [a, e, e, e, e],
+        [e, e, e, a, a],
+        [e, a, a, e, a],
+        [a, e, a, e, a]
+    ],
+    engine3: [
+        [a, a, a, a, a, a, a, a, e, a, a, a, a, a, e, e, e, a, a, a, e, e, e, e, e, e, a, a, a, a, a, a, a, e, a, a, a, a, a]
     ]
 };
 

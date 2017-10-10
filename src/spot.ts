@@ -11,8 +11,6 @@ const statusMapping = {
 const statuses = Object.keys(statusMapping)
 
 export class Spot {
-    public neighborBlocks: number[]
-
     constructor(public index = 0, public status = "empty") { }
 
     public xIndex(width: number) {

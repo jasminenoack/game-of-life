@@ -5,6 +5,7 @@ declare const d3: any;
 
 let sideLengthEl, sideLength, squareSize, height, width, board;
 const boardEl = d3.select("#board")
+const wrappedEl = document.getElementById("wrapped")
 
 setUpSizes()
 
@@ -75,6 +76,7 @@ function setUpSizes() {
 
     board = new Board(width, height)
     board.wrapped = true
+    board.wrapped = (wrappedEl as HTMLInputElement).checked
 
     boardEl.attr("height", height * squareSize)
     boardEl.attr("width", width * squareSize)
@@ -83,9 +85,12 @@ function setUpSizes() {
     }
 }
 
-
 const resizeButton = document.getElementById("resize")
 resizeButton.addEventListener("click", () => {
     setUpSizes()
     drawBoard()
+})
+
+wrappedEl.addEventListener("change", (e) => {
+    board.wrapped = (wrappedEl as HTMLInputElement).checked
 })

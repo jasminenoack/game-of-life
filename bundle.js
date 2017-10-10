@@ -74,6 +74,7 @@ var board_1 = __webpack_require__(1);
 var patterns_1 = __webpack_require__(3);
 var sideLengthEl, sideLength, squareSize, height, width, board;
 var boardEl = d3.select("#board");
+var wrappedEl = document.getElementById("wrapped");
 setUpSizes();
 function drawBoard() {
     var data = board.data();
@@ -133,6 +134,7 @@ function setUpSizes() {
     width = sideLength;
     board = new board_1.Board(width, height);
     board.wrapped = true;
+    board.wrapped = wrappedEl.checked;
     boardEl.attr("height", height * squareSize);
     boardEl.attr("width", width * squareSize);
     if (pattern) {
@@ -143,6 +145,9 @@ var resizeButton = document.getElementById("resize");
 resizeButton.addEventListener("click", function () {
     setUpSizes();
     drawBoard();
+});
+wrappedEl.addEventListener("change", function (e) {
+    board.wrapped = wrappedEl.checked;
 });
 
 
@@ -198,9 +203,6 @@ var Board = /** @class */ (function () {
         var lastRow = this.lastRow(i);
         var firstColumn = this.firstColumn(i);
         var lastColumn = this.lastColumn(i);
-        if (this.spots[i].neighborBlocks) {
-            return this.spots[i].neighborBlocks;
-        }
         // 0 1 2 
         // 3 4 5
         // 6 7 8
@@ -293,8 +295,7 @@ var Board = /** @class */ (function () {
                 neighborBlocks.push(i + 1);
             }
         }
-        this.spots[i].neighborBlocks = neighborBlocks;
-        return this.spots[i].neighborBlocks;
+        return neighborBlocks;
     };
     Board.prototype.aliveNeighbors = function (i) {
         var _this = this;

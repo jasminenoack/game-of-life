@@ -51,10 +51,6 @@ export class Board {
         var firstColumn = this.firstColumn(i)
         var lastColumn = this.lastColumn(i)
 
-        if (this.spots[i].neighborBlocks) {
-            return this.spots[i].neighborBlocks
-        }
-
         // 0 1 2 
         // 3 4 5
         // 6 7 8
@@ -139,8 +135,7 @@ export class Board {
                 neighborBlocks.push(i + 1)
             }
         }
-        this.spots[i].neighborBlocks = neighborBlocks
-        return this.spots[i].neighborBlocks
+        return neighborBlocks
     }
 
     public aliveNeighbors(i) {

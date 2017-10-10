@@ -157,6 +157,7 @@ var Board = /** @class */ (function () {
     function Board(width, height) {
         this.width = width;
         this.height = height;
+        this.wrapped = false;
         this.spots = [];
         for (var i = 0; i < width * height; i++) {
             this.spots.push(new spot_1.Spot(i));
@@ -199,30 +200,97 @@ var Board = /** @class */ (function () {
         if (this.spots[i].neighborBlocks) {
             return this.spots[i].neighborBlocks;
         }
+        // 0 1 2 
+        // 3 4 5
+        // 6 7 8
         var neighborBlocks = [];
+        // find the left top
         if (!firstRow && !firstColumn) {
             neighborBlocks.push(i - this.width - 1);
         }
+        else if (this.wrapped) {
+            if (firstRow && firstColumn) {
+                neighborBlocks.push(this.height * this.width - 1);
+            }
+            else if (firstRow) {
+                neighborBlocks.push(this.height * this.width - this.width + i - 1);
+            }
+            else if (firstColumn) {
+                neighborBlocks.push(i - 1);
+            }
+        }
+        // find top middle 
         if (!firstRow) {
             neighborBlocks.push(i - this.width);
         }
+        else if (this.wrapped) {
+            neighborBlocks.push(this.height * this.width - this.width + i);
+        }
+        // find top right 
         if (!firstRow && !lastColumn) {
             neighborBlocks.push(i - this.width + 1);
         }
+        else if (this.wrapped) {
+            if (firstRow && lastColumn) {
+                neighborBlocks.push(this.height * this.width - this.width);
+            }
+            else if (firstRow) {
+                neighborBlocks.push(this.height * this.width - this.width + i + 1);
+            }
+            else if (lastColumn) {
+                neighborBlocks.push(i + 1 - this.width * 2);
+            }
+        }
+        // find left
         if (!firstColumn) {
             neighborBlocks.push(i - 1);
         }
+        else if (this.wrapped) {
+            neighborBlocks.push(i - 1 + this.width);
+        }
+        // find right
         if (!lastColumn) {
             neighborBlocks.push(i + 1);
         }
+        else if (this.wrapped) {
+            neighborBlocks.push(i + 1 - this.width);
+        }
+        // find bottom left
         if (!lastRow && !firstColumn) {
             neighborBlocks.push(i + this.width - 1);
         }
+        else if (this.wrapped) {
+            if (lastRow && firstColumn) {
+                neighborBlocks.push(this.width - 1);
+            }
+            else if (lastRow) {
+                neighborBlocks.push((i % this.width) - 1);
+            }
+            else if (firstColumn) {
+                neighborBlocks.push(i - 1 + this.width * 2);
+            }
+        }
+        // find bottom middle
         if (!lastRow) {
             neighborBlocks.push(i + this.width);
         }
+        else if (this.wrapped) {
+            neighborBlocks.push(i % this.width);
+        }
+        // find bottom right
         if (!lastRow && !lastColumn) {
             neighborBlocks.push(i + this.width + 1);
+        }
+        else if (this.wrapped) {
+            if (lastRow && lastColumn) {
+                neighborBlocks.push(0);
+            }
+            else if (lastRow) {
+                neighborBlocks.push((i % this.width) + 1);
+            }
+            else if (lastColumn) {
+                neighborBlocks.push(i + 1);
+            }
         }
         this.spots[i].neighborBlocks = neighborBlocks;
         return this.spots[i].neighborBlocks;

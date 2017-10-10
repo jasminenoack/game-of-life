@@ -120,8 +120,8 @@ export class Board {
             spot.status = "empty"
         })
 
-        const height = pattern.length
-        const width = pattern[0].length
+        const height = Math.min(pattern.length, this.height)
+        const width = Math.min(pattern[0].length, this.width)
 
         const widthStart = Math.floor((this.width / 2) - (width / 2))
         const heightStart = Math.floor((this.height / 2) - (height / 2))
@@ -134,5 +134,21 @@ export class Board {
                 this.spots[index].status = pattern[j][i]
             }
         }
+    }
+
+    public getPattern() {
+        const spots = this.spots
+        const height = this.height
+        const width = this.width
+        const results = []
+        for (let i = 0; i < height; i++) {
+            const current = []
+            results.push(current)
+            for (let j = 0; j < width; j++) {
+                const index = i * width + j;
+                current.push(spots[index].status)
+            }
+        }
+        return results
     }
 }

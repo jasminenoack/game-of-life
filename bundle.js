@@ -71,25 +71,15 @@
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var board_1 = __webpack_require__(1);
-var squareSize = 5;
-// let windowWidth = window.innerWidth - 500
-// windowWidth -= windowWidth % squareSize
-// const width = windowWidth / squareSize
-// let windowHeight = window.innerHeight - 200
-// windowHeight -= windowHeight % squareSize
-// const height = windowHeight / squareSize
-var height = 120;
-var width = 120;
-var board = new board_1.Board(width, height);
+var patterns_1 = __webpack_require__(3);
+var sideLengthEl, sideLength, squareSize, height, width, board;
+var boardEl = d3.select("#board");
+setUpSizes();
 function drawBoard() {
     var data = board.data();
-    var boardEl = d3.select("#board");
-    boardEl.attr("height", height * squareSize);
-    boardEl.attr("width", width * squareSize);
+    boardEl.selectAll('rect').data(data).enter().append("rect");
+    boardEl.selectAll('rect').data(data).exit().remove();
     var rects = boardEl.selectAll('rect').data(data);
-    if (!rects.size()) {
-        rects = rects.enter().append("rect");
-    }
     rects.attr("x", function (d) { return d.xIndex * squareSize; })
         .attr("y", function (d) { return d.yIndex * squareSize; })
         .attr("width", squareSize)
@@ -126,104 +116,33 @@ autoButton.addEventListener("click", function () {
 var selectPattern = document.getElementById("pattern");
 var generateButton = document.getElementById("generate");
 generateButton.addEventListener("click", function () {
-    board.generatePattern(patterns[selectPattern.value]);
+    board.generatePattern(patterns_1.patterns[selectPattern.value]);
     drawBoard();
 });
-var patterns = {
-    block: [
-        ["alive", "alive"],
-        ["alive", "alive"]
-    ],
-    beehive: [
-        ["empty", "alive", "alive", "empty"],
-        ["alive", "empty", "empty", "alive"],
-        ["empty", "alive", "alive", "empty"]
-    ],
-    loaf: [
-        ["empty", "alive", "alive", "empty"],
-        ["alive", "empty", "empty", "alive"],
-        ["empty", "alive", "empty", "alive"],
-        ["empty", "empty", "alive", "empty"]
-    ],
-    boat: [
-        ["alive", "alive", "empty"],
-        ["alive", "empty", "alive"],
-        ["empty", "alive", "empty"]
-    ],
-    tub: [
-        ["empty", "alive", "empty"],
-        ["alive", "empty", "alive"],
-        ["empty", "alive", "empty"]
-    ],
-    blinker: [
-        ["alive", "alive", "alive"]
-    ],
-    toad: [
-        ["empty", "alive", "alive", "alive"],
-        ["alive", "alive", "alive", "empty"]
-    ],
-    beacon: [
-        ["alive", "alive", "empty", "empty"],
-        ["alive", "empty", "empty", "empty"],
-        ["empty", "empty", "empty", "alive"],
-        ["empty", "empty", "alive", "alive"]
-    ],
-    pulsar: [
-        ["empty", "empty", "alive", "alive", "empty", "empty", "empty", "empty", "empty", "alive", "alive", "empty", "empty"],
-        ["empty", "empty", "empty", "alive", "alive", "empty", "empty", "empty", "alive", "alive", "empty", "empty", "empty"],
-        ["alive", "empty", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "empty", "alive"],
-        ["alive", "alive", "alive", "empty", "alive", "alive", "empty", "alive", "alive", "empty", "alive", "alive", "alive"],
-        ["empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty"],
-        ["empty", "empty", "alive", "alive", "alive", "empty", "empty", "empty", "alive", "alive", "alive", "empty", "empty"],
-        ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty"],
-        ["empty", "empty", "alive", "alive", "alive", "empty", "empty", "empty", "alive", "alive", "alive", "empty", "empty"],
-        ["empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty"],
-        ["alive", "alive", "alive", "empty", "alive", "alive", "empty", "alive", "alive", "empty", "alive", "alive", "alive"],
-        ["alive", "empty", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "empty", "alive"],
-        ["empty", "empty", "empty", "alive", "alive", "empty", "empty", "empty", "alive", "alive", "empty", "empty", "empty"],
-        ["empty", "empty", "alive", "alive", "empty", "empty", "empty", "empty", "empty", "alive", "alive", "empty", "empty"],
-    ],
-    pentadecathlon: [
-        ["alive", "alive", "alive"],
-        ["empty", "alive", "empty"],
-        ["empty", "alive", "empty"],
-        ["alive", "alive", "alive"],
-        ["empty", "empty", "empty"],
-        ["alive", "alive", "alive"],
-        ["alive", "alive", "alive"],
-        ["empty", "empty", "empty"],
-        ["alive", "alive", "alive"],
-        ["empty", "alive", "empty"],
-        ["empty", "alive", "empty"],
-        ["alive", "alive", "alive"],
-    ],
-    glider: [
-        ["empty", "alive", "empty"],
-        ["empty", "empty", "alive"],
-        ["alive", "alive", "alive"],
-    ],
-    lightweightSpaceship: [
-        ["alive", "empty", "empty", "alive", "empty"],
-        ["empty", "empty", "empty", "empty", "alive"],
-        ["alive", "empty", "empty", "empty", "alive"],
-        ["empty", "alive", "alive", "alive", "alive"]
-    ],
-    rPentomino: [
-        ["empty", "alive", "alive"],
-        ["alive", "alive", "empty"],
-        ["empty", "alive", "empty"]
-    ],
-    diehard: [
-        ["empty", "empty", "empty", "empty", "empty", "empty", "alive", "empty"],
-        ["alive", "alive", "empty", "empty", "empty", "empty", "empty", "empty"],
-        ["empty", "alive", "empty", "empty", "empty", "alive", "alive", "alive"]
-    ],
-    acorn: [
-        ["empty", "alive", "empty", "empty", "empty", "empty", "empty"],
-        ["empty", "empty", "empty", "alive", "empty", "empty", "empty"],
-        ["alive", "alive", "empty", "empty", "alive", "alive", "alive"]
-    ]
-};
+function setUpSizes() {
+    var pattern;
+    if (board) {
+        pattern = board.getPattern();
+    }
+    var windowWidth = window.innerWidth - 200;
+    var windowHeight = window.innerHeight - 200;
+    sideLengthEl = document.getElementById("size");
+    sideLength = parseInt(sideLengthEl.value);
+    squareSize = Math.floor(Math.min(windowWidth, windowHeight) / sideLength);
+    height = sideLength;
+    width = sideLength;
+    board = new board_1.Board(width, height);
+    boardEl.attr("height", height * squareSize);
+    boardEl.attr("width", width * squareSize);
+    if (pattern) {
+        board.generatePattern(pattern);
+    }
+}
+var resizeButton = document.getElementById("resize");
+resizeButton.addEventListener("click", function () {
+    setUpSizes();
+    drawBoard();
+});
 
 
 /***/ }),
@@ -348,8 +267,8 @@ var Board = /** @class */ (function () {
         this.spots.forEach(function (spot) {
             spot.status = "empty";
         });
-        var height = pattern.length;
-        var width = pattern[0].length;
+        var height = Math.min(pattern.length, this.height);
+        var width = Math.min(pattern[0].length, this.width);
         var widthStart = Math.floor((this.width / 2) - (width / 2));
         var heightStart = Math.floor((this.height / 2) - (height / 2));
         for (var j = 0; j < height; j++) {
@@ -360,6 +279,21 @@ var Board = /** @class */ (function () {
                 this.spots[index].status = pattern[j][i];
             }
         }
+    };
+    Board.prototype.getPattern = function () {
+        var spots = this.spots;
+        var height = this.height;
+        var width = this.width;
+        var results = [];
+        for (var i = 0; i < height; i++) {
+            var current = [];
+            results.push(current);
+            for (var j = 0; j < width; j++) {
+                var index = i * width + j;
+                current.push(spots[index].status);
+            }
+        }
+        return results;
     };
     return Board;
 }());
@@ -375,10 +309,10 @@ exports.Board = Board;
 Object.defineProperty(exports, "__esModule", { value: true });
 var statusMapping = {
     empty: "rgba(240,248,255, 1)",
-    dead: "rgba(25,25,112, 0.2)",
-    dyingover: "rgba(128,0,0,0.2)",
+    dead: "rgba(25,25,112, 0.8)",
+    dyingover: "rgba(128,0,0,0.8)",
     alive: "rgba(255,99,71, 1)",
-    dyingunder: "rgba(255,105,180, 0.2)"
+    dyingunder: "rgba(255,105,180, 0.8)"
 };
 var statuses = Object.keys(statusMapping);
 var Spot = /** @class */ (function () {
@@ -404,6 +338,110 @@ var Spot = /** @class */ (function () {
     return Spot;
 }());
 exports.Spot = Spot;
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.patterns = {
+    block: [
+        ["alive", "alive"],
+        ["alive", "alive"]
+    ],
+    beehive: [
+        ["empty", "alive", "alive", "empty"],
+        ["alive", "empty", "empty", "alive"],
+        ["empty", "alive", "alive", "empty"]
+    ],
+    loaf: [
+        ["empty", "alive", "alive", "empty"],
+        ["alive", "empty", "empty", "alive"],
+        ["empty", "alive", "empty", "alive"],
+        ["empty", "empty", "alive", "empty"]
+    ],
+    boat: [
+        ["alive", "alive", "empty"],
+        ["alive", "empty", "alive"],
+        ["empty", "alive", "empty"]
+    ],
+    tub: [
+        ["empty", "alive", "empty"],
+        ["alive", "empty", "alive"],
+        ["empty", "alive", "empty"]
+    ],
+    blinker: [
+        ["alive", "alive", "alive"]
+    ],
+    toad: [
+        ["empty", "alive", "alive", "alive"],
+        ["alive", "alive", "alive", "empty"]
+    ],
+    beacon: [
+        ["alive", "alive", "empty", "empty"],
+        ["alive", "empty", "empty", "empty"],
+        ["empty", "empty", "empty", "alive"],
+        ["empty", "empty", "alive", "alive"]
+    ],
+    pulsar: [
+        ["empty", "empty", "alive", "alive", "empty", "empty", "empty", "empty", "empty", "alive", "alive", "empty", "empty"],
+        ["empty", "empty", "empty", "alive", "alive", "empty", "empty", "empty", "alive", "alive", "empty", "empty", "empty"],
+        ["alive", "empty", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "empty", "alive"],
+        ["alive", "alive", "alive", "empty", "alive", "alive", "empty", "alive", "alive", "empty", "alive", "alive", "alive"],
+        ["empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty"],
+        ["empty", "empty", "alive", "alive", "alive", "empty", "empty", "empty", "alive", "alive", "alive", "empty", "empty"],
+        ["empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty"],
+        ["empty", "empty", "alive", "alive", "alive", "empty", "empty", "empty", "alive", "alive", "alive", "empty", "empty"],
+        ["empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty"],
+        ["alive", "alive", "alive", "empty", "alive", "alive", "empty", "alive", "alive", "empty", "alive", "alive", "alive"],
+        ["alive", "empty", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "alive", "empty", "empty", "alive"],
+        ["empty", "empty", "empty", "alive", "alive", "empty", "empty", "empty", "alive", "alive", "empty", "empty", "empty"],
+        ["empty", "empty", "alive", "alive", "empty", "empty", "empty", "empty", "empty", "alive", "alive", "empty", "empty"],
+    ],
+    pentadecathlon: [
+        ["alive", "alive", "alive"],
+        ["empty", "alive", "empty"],
+        ["empty", "alive", "empty"],
+        ["alive", "alive", "alive"],
+        ["empty", "empty", "empty"],
+        ["alive", "alive", "alive"],
+        ["alive", "alive", "alive"],
+        ["empty", "empty", "empty"],
+        ["alive", "alive", "alive"],
+        ["empty", "alive", "empty"],
+        ["empty", "alive", "empty"],
+        ["alive", "alive", "alive"],
+    ],
+    glider: [
+        ["empty", "alive", "empty"],
+        ["empty", "empty", "alive"],
+        ["alive", "alive", "alive"],
+    ],
+    lightweightSpaceship: [
+        ["alive", "empty", "empty", "alive", "empty"],
+        ["empty", "empty", "empty", "empty", "alive"],
+        ["alive", "empty", "empty", "empty", "alive"],
+        ["empty", "alive", "alive", "alive", "alive"]
+    ],
+    rPentomino: [
+        ["empty", "alive", "alive"],
+        ["alive", "alive", "empty"],
+        ["empty", "alive", "empty"]
+    ],
+    diehard: [
+        ["empty", "empty", "empty", "empty", "empty", "empty", "alive", "empty"],
+        ["alive", "alive", "empty", "empty", "empty", "empty", "empty", "empty"],
+        ["empty", "alive", "empty", "empty", "empty", "alive", "alive", "alive"]
+    ],
+    acorn: [
+        ["empty", "alive", "empty", "empty", "empty", "empty", "empty"],
+        ["empty", "empty", "empty", "alive", "empty", "empty", "empty"],
+        ["alive", "alive", "empty", "empty", "alive", "alive", "alive"]
+    ]
+};
 
 
 /***/ })

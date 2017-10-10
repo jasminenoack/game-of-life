@@ -75,7 +75,13 @@ var patterns_1 = __webpack_require__(3);
 var sideLengthEl, sideLength, squareSize, height, width, board;
 var boardEl = d3.select("#board");
 var wrappedEl = document.getElementById("wrapped");
-setUpSizes();
+var rulesEl = document.getElementById("ruleSets");
+Object.keys(board_1.ruleSets).forEach(function (rule) {
+    var option = document.createElement('option');
+    option.value = rule;
+    option.innerText = board_1.ruleSets[rule].name;
+    rulesEl.appendChild(option);
+});
 function drawBoard() {
     var data = board.data();
     boardEl.selectAll('rect').data(data).enter().append("rect");
@@ -89,7 +95,6 @@ function drawBoard() {
         .attr("ry", squareSize / 2)
         .attr("fill", function (d) { return d.color; });
 }
-drawBoard();
 var randomButton = document.getElementById("random");
 randomButton.addEventListener("click", function () {
     board.randomize();
@@ -120,6 +125,12 @@ generateButton.addEventListener("click", function () {
     board.generatePattern(patterns_1.patterns[selectPattern.value]);
     drawBoard();
 });
+function setUpBoard() {
+    board = new board_1.Board(width, height);
+    board.wrapped = true;
+    board.wrapped = wrappedEl.checked;
+    board.ruleSet = board_1.ruleSets[rulesEl.value];
+}
 function setUpSizes() {
     var pattern;
     if (board) {
@@ -132,9 +143,7 @@ function setUpSizes() {
     squareSize = Math.floor(Math.min(windowWidth, windowHeight) / sideLength);
     height = sideLength;
     width = sideLength;
-    board = new board_1.Board(width, height);
-    board.wrapped = true;
-    board.wrapped = wrappedEl.checked;
+    setUpBoard();
     boardEl.attr("height", height * squareSize);
     boardEl.attr("width", width * squareSize);
     if (pattern) {
@@ -149,6 +158,11 @@ resizeButton.addEventListener("click", function () {
 wrappedEl.addEventListener("change", function (e) {
     board.wrapped = wrappedEl.checked;
 });
+rulesEl.addEventListener("change", function () {
+    board.ruleSet = board_1.ruleSets[rulesEl.value];
+});
+setUpSizes();
+drawBoard();
 
 
 /***/ }),
@@ -161,8 +175,29 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var spot_1 = __webpack_require__(2);
 exports.ruleSets = {
     default: {
+        name: "Default: (B3S23)",
         stayAlive: [2, 3],
         born: [3]
+    },
+    highlife: {
+        name: "Highlife: (B36S23)",
+        stayAlive: [2, 3],
+        born: [3, 6]
+    },
+    split: {
+        name: "Split: (B6S16)",
+        stayAlive: [1, 6],
+        born: [6]
+    },
+    fractal: {
+        name: "Fractal: (B1S12)",
+        stayAlive: [1, 2],
+        born: [1]
+    },
+    seeds: {
+        name: "Seeds: (B2S)",
+        stayAlive: [],
+        born: [2]
     }
 };
 var Board = /** @class */ (function () {
@@ -330,9 +365,6 @@ var Board = /** @class */ (function () {
                 results.push("alive");
             }
             else if (status === "alive") {
-                results.push("dying");
-            }
-            else if (status === "dying") {
                 results.push("dead");
             }
             else {

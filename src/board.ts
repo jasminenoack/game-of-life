@@ -2,8 +2,29 @@ import { Spot } from './spot'
 
 export const ruleSets = {
     default: {
+        name: "Default: (B3S23)",
         stayAlive: [2, 3],
         born: [3]
+    },
+    highlife: {
+        name: "Highlife: (B36S23)",
+        stayAlive: [2, 3],
+        born: [3, 6]
+    },
+    split: {
+        name: "Split: (B6S16)",
+        stayAlive: [1, 6],
+        born: [6]
+    },
+    fractal: {
+        name: "Fractal: (B1S12)",
+        stayAlive: [1, 2],
+        born: [1]
+    },
+    seeds: {
+        name: "Seeds: (B2S)",
+        stayAlive: [],
+        born: [2]
     }
 }
 
@@ -174,8 +195,6 @@ export class Board {
             ) {
                 results.push("alive")
             } else if (status === "alive") {
-                results.push("dying")
-            } else if (status === "dying") {
                 results.push("dead")
             } else {
                 results.push(status)

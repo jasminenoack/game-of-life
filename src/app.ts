@@ -1,4 +1,4 @@
-import { Board } from './board'
+import { ruleSets, Board } from './board'
 import { patterns } from './patterns'
 
 declare const d3: any;
@@ -6,8 +6,14 @@ declare const d3: any;
 let sideLengthEl, sideLength, squareSize, height, width, board;
 const boardEl = d3.select("#board")
 const wrappedEl = document.getElementById("wrapped")
+const rulesEl = document.getElementById("ruleSets")
 
-setUpSizes()
+Object.keys(ruleSets).forEach(rule => {
+    const option = document.createElement('option')
+    option.value = rule
+    option.innerText = ruleSets[rule].name
+    rulesEl.appendChild(option)
+});
 
 function drawBoard() {
     const data = board.data()
@@ -24,7 +30,6 @@ function drawBoard() {
         .attr("ry", squareSize / 2)
         .attr("fill", (d) => d.color)
 }
-drawBoard()
 
 const randomButton = document.getElementById("random")
 randomButton.addEventListener("click", () => {
@@ -59,6 +64,13 @@ generateButton.addEventListener("click", () => {
     drawBoard()
 })
 
+function setUpBoard() {
+    board = new Board(width, height)
+    board.wrapped = true
+    board.wrapped = (wrappedEl as HTMLInputElement).checked
+
+    board.ruleSet = ruleSets[(rulesEl as HTMLSelectElement).value]
+}
 
 function setUpSizes() {
     let pattern
@@ -74,9 +86,7 @@ function setUpSizes() {
     height = sideLength;
     width = sideLength;
 
-    board = new Board(width, height)
-    board.wrapped = true
-    board.wrapped = (wrappedEl as HTMLInputElement).checked
+    setUpBoard()
 
     boardEl.attr("height", height * squareSize)
     boardEl.attr("width", width * squareSize)
@@ -94,3 +104,10 @@ resizeButton.addEventListener("click", () => {
 wrappedEl.addEventListener("change", (e) => {
     board.wrapped = (wrappedEl as HTMLInputElement).checked
 })
+
+rulesEl.addEventListener("change", () => {
+    board.ruleSet = ruleSets[(rulesEl as HTMLSelectElement).value]
+})
+
+setUpSizes()
+drawBoard()

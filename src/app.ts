@@ -74,6 +74,7 @@ function setUpSizes() {
     width = sideLength;
 
     board = new Board(width, height)
+    board.wrapped = true
 
     boardEl.attr("height", height * squareSize)
     boardEl.attr("width", width * squareSize)

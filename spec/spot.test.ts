@@ -51,6 +51,6 @@ describe('spot', () => {
         expect((new Spot(6, "alive")).spotColor()).toEqual("rgba(255,99,71, 1)");
         expect((new Spot(6, "dyingover")).spotColor()).toEqual("rgba(128,0,0,0.8)");
         expect((new Spot(6, "dead")).spotColor()).toEqual("rgba(25,25,112, 0.8)");
-        expect((new Spot(6, "empty")).spotColor()).toEqual("rgba(240,248,255, 1)");
+        expect((new Spot(6, "empty")).spotColor()).toEqual("rgba(106,90,205, 0.8)");
     })
 })

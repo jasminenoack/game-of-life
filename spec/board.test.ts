@@ -29,19 +29,19 @@ describe('board', () => {
       {
         xIndex: 0,
         yIndex: 0,
-        color: "rgba(240,248,255, 1)"
+        color: "rgba(106,90,205, 0.8)"
       }, {
         xIndex: 1,
         yIndex: 0,
-        color: "rgba(240,248,255, 1)"
+        color: "rgba(106,90,205, 0.8)"
       }, {
         xIndex: 0,
         yIndex: 1,
-        color: "rgba(240,248,255, 1)"
+        color: "rgba(106,90,205, 0.8)"
       }, {
         xIndex: 1,
         yIndex: 1,
-        color: "rgba(240,248,255, 1)"
+        color: "rgba(106,90,205, 0.8)"
       }
     ])
   })
@@ -129,18 +129,18 @@ describe('board', () => {
       {
         xIndex: 1,
         yIndex: 0,
-        color: "rgba(240,248,255, 1)"
+        color: "rgba(106,90,205, 0.8)"
       },
       {
         xIndex: 2,
         yIndex: 0,
-        color: "rgba(240,248,255, 1)"
+        color: "rgba(106,90,205, 0.8)"
       },
 
       {
         xIndex: 0,
         yIndex: 1,
-        color: "rgba(240,248,255, 1)"
+        color: "rgba(106,90,205, 0.8)"
       },
       {
         xIndex: 1,
@@ -150,13 +150,13 @@ describe('board', () => {
       {
         xIndex: 2,
         yIndex: 1,
-        color: "rgba(240,248,255, 1)"
+        color: "rgba(106,90,205, 0.8)"
       },
 
       {
         xIndex: 0,
         yIndex: 2,
-        color: "rgba(240,248,255, 1)"
+        color: "rgba(106,90,205, 0.8)"
       },
       {
         xIndex: 1,
@@ -166,7 +166,7 @@ describe('board', () => {
       {
         xIndex: 2,
         yIndex: 2,
-        color: "rgba(240,248,255, 1)"
+        color: "rgba(106,90,205, 0.8)"
       },
     ])
 
@@ -184,12 +184,12 @@ describe('board', () => {
       {
         xIndex: 1,
         yIndex: 0,
-        color: "rgba(240,248,255, 1)"
+        color: "rgba(106,90,205, 0.8)"
       },
       {
         xIndex: 2,
         yIndex: 0,
-        color: "rgba(240,248,255, 1)"
+        color: "rgba(106,90,205, 0.8)"
       },
 
       {
@@ -205,13 +205,13 @@ describe('board', () => {
       {
         xIndex: 2,
         yIndex: 1,
-        color: "rgba(240,248,255, 1)"
+        color: "rgba(106,90,205, 0.8)"
       },
 
       {
         xIndex: 0,
         yIndex: 2,
-        color: "rgba(240,248,255, 1)"
+        color: "rgba(106,90,205, 0.8)"
       },
       {
         xIndex: 1,
@@ -221,7 +221,7 @@ describe('board', () => {
       {
         xIndex: 2,
         yIndex: 2,
-        color: "rgba(240,248,255, 1)"
+        color: "rgba(106,90,205, 0.8)"
       },
     ])
 
@@ -237,12 +237,12 @@ describe('board', () => {
       {
         xIndex: 1,
         yIndex: 0,
-        color: "rgba(240,248,255, 1)"
+        color: "rgba(106,90,205, 0.8)"
       },
       {
         xIndex: 2,
         yIndex: 0,
-        color: "rgba(240,248,255, 1)"
+        color: "rgba(106,90,205, 0.8)"
       },
 
       {
@@ -258,13 +258,13 @@ describe('board', () => {
       {
         xIndex: 2,
         yIndex: 1,
-        color: "rgba(240,248,255, 1)"
+        color: "rgba(106,90,205, 0.8)"
       },
 
       {
         xIndex: 0,
         yIndex: 2,
-        color: "rgba(240,248,255, 1)"
+        color: "rgba(106,90,205, 0.8)"
       },
       {
         xIndex: 1,
@@ -274,7 +274,7 @@ describe('board', () => {
       {
         xIndex: 2,
         yIndex: 2,
-        color: "rgba(240,248,255, 1)"
+        color: "rgba(106,90,205, 0.8)"
       },
     ])
   })

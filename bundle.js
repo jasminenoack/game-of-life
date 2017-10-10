@@ -159,11 +159,18 @@ wrappedEl.addEventListener("change", function (e) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var spot_1 = __webpack_require__(2);
+exports.ruleSets = {
+    default: {
+        stayAlive: [2, 3],
+        born: [3]
+    }
+};
 var Board = /** @class */ (function () {
     function Board(width, height) {
         this.width = width;
         this.height = height;
         this.wrapped = false;
+        this.ruleSet = exports.ruleSets.default;
         this.spots = [];
         for (var i = 0; i < width * height; i++) {
             this.spots.push(new spot_1.Spot(i));
@@ -313,20 +320,23 @@ var Board = /** @class */ (function () {
         var results = [];
         this.spots.forEach(function (spot, index) {
             var neighborCount = _this.aliveNeighbors(index);
-            if (neighborCount < 2 && spot.status === "alive") {
-                results.push("dyingunder");
-            }
-            else if (neighborCount > 3 && spot.status === "alive") {
-                results.push("dyingover");
-            }
-            else if ((spot.status === "alive" && neighborCount === 2) || neighborCount === 3) {
+            var status = spot.status;
+            if (status === "alive" &&
+                _this.ruleSet.stayAlive.indexOf(neighborCount) !== -1) {
                 results.push("alive");
             }
-            else if (spot.status.indexOf("dying") !== -1) {
+            else if (status !== "alive" &&
+                _this.ruleSet.born.indexOf(neighborCount) !== -1) {
+                results.push("alive");
+            }
+            else if (status === "alive") {
+                results.push("dying");
+            }
+            else if (status === "dying") {
                 results.push("dead");
             }
             else {
-                results.push(spot.status);
+                results.push(status);
             }
         });
         results.forEach(function (result, index) {
@@ -380,9 +390,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var statusMapping = {
     empty: "rgba(106,90,205, 0.8)",
     dead: "rgba(25,25,112, 0.8)",
-    dyingover: "rgba(128,0,0,0.8)",
     alive: "rgba(255,99,71, 1)",
-    dyingunder: "rgba(255,105,180, 0.8)"
+    dying: "rgba(255,105,180, 0.8)"
 };
 var statuses = Object.keys(statusMapping);
 var Spot = /** @class */ (function () {

@@ -1,8 +1,16 @@
 import { Spot } from './spot'
 
+export const ruleSets = {
+    default: {
+        stayAlive: [2, 3],
+        born: [3]
+    }
+}
+
 export class Board {
     spots: Spot[];
     wrapped: boolean = false;
+    ruleSet = ruleSets.default
 
     constructor(public width: number, public height: number) {
         this.spots = []
@@ -153,17 +161,26 @@ export class Board {
         const results = []
         this.spots.forEach((spot, index) => {
             const neighborCount = this.aliveNeighbors(index)
-            if (neighborCount < 2 && spot.status === "alive") {
-                results.push("dyingunder")
-            } else if (neighborCount > 3 && spot.status === "alive") {
-                results.push("dyingover")
-            } else if ((spot.status === "alive" && neighborCount === 2) || neighborCount === 3) {
+            const status = spot.status
+
+            if (
+                status === "alive" &&
+                this.ruleSet.stayAlive.indexOf(neighborCount) !== -1
+            ) {
                 results.push("alive")
-            } else if (spot.status.indexOf("dying") !== -1) {
+            } else if (
+                status !== "alive" &&
+                this.ruleSet.born.indexOf(neighborCount) !== -1
+            ) {
+                results.push("alive")
+            } else if (status === "alive") {
+                results.push("dying")
+            } else if (status === "dying") {
                 results.push("dead")
             } else {
-                results.push(spot.status)
+                results.push(status)
             }
+
         })
         results.forEach((result, index) => {
             this.spots[index].status = result
